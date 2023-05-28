@@ -1,0 +1,12 @@
+{
+  "resourceName": "tonguesFiles",
+  "policyUUID": "15fbfd1a",
+  "bucketName": "tongues16254ff6006a42ae85aaa8cf09ad174e",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
