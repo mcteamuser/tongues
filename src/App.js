@@ -10,6 +10,10 @@ import {
   Card,
 } from "@aws-amplify/ui-react";
 import { Storage } from 'aws-amplify';
+import AWS from 'aws-sdk';
+
+const s3 = new AWS.S3();
+
 function App({ signOut }) {
   const [selectedFile, setSelectedFile] = useState(null)
   const handleFileInput = (e) => {
@@ -32,11 +36,12 @@ function App({ signOut }) {
     <View className="App">
       <Card>
         <Image src={logo} className="App-logo" alt="logo" />
-        <Heading level={1}>We now have Auth!</Heading>
+        <Heading level={1}>Convert Your Audio Files Into Different Languages!</Heading>
       </Card>
       <label for="file-upload" class="custom-file-upload">
         Upload Audio File Here
       </label>
+      <br></br>
       <input id="file-upload" type="file" onChange={handleFileInput}/>
       <br></br>
       <button onClick={()=>{
