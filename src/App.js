@@ -44,6 +44,13 @@ function App({ signOut }) {
       <br></br>
       <input id="file-upload" type="file" onChange={handleFileInput}/>
       <br></br>
+      <label for="language">Choose an output language:</label>
+        <select name="language" id="language">
+          <option value="arabic">Arabic</option>
+          <option value="mandarin">Chinese, Mandarin</option>
+          <option value="danish">Danish</option>
+          <option value="dutch">Dutch</option>
+        </select>
       <button onClick={()=>{
                     uploadFile(selectedFile)
                   }}>Translate!</button>
