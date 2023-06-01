@@ -10,7 +10,7 @@ import {
   Card,
 } from "@aws-amplify/ui-react";
 import { Storage } from 'aws-amplify';
-import AWS from 'aws-sdk';
+import AWS from 'aws-sdk'; //Needed to import this to work properly
 
 const s3 = new AWS.S3();
 
