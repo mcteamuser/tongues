@@ -3,27 +3,31 @@ import "@aws-amplify/ui-react/styles.css";
 import { useState, useEffect} from 'react';
 import {
   withAuthenticator,
+  useAuthenticator,
   Button,
   Heading,
   Image,
   View,
   Card,
 } from "@aws-amplify/ui-react";
-import { Storage } from 'aws-amplify';
+import { Storage, Auth} from 'aws-amplify';
 import AWS from 'aws-sdk'; //Needed to import this to work properly
 
 const s3 = new AWS.S3();
 
 function App({ signOut }) {
   const [selectedFile, setSelectedFile] = useState(null)
+  const { user } = useAuthenticator();
   const handleFileInput = (e) => {
     setSelectedFile(e.target.files[0]);
   }
   const uploadFile = async (file) => {
+    // Do send-ahead API Call to Store Email, Filename, and Language
+    var userEmail = await getEmail()
     try {
       await Storage.put(file.name, file, {
         level: "private",
-        metadata: {key: String(Math.random())}, //To prevent pulling an old outdated file
+        metadata: {email: String(userEmail), language: "Spanish"}, //To prevent pulling an old outdated file
         contentType: "audio/mp3", // contentType is optional
       });
       console.log("Success!")
@@ -31,6 +35,11 @@ function App({ signOut }) {
      catch (error) {
       console.log("Error uploading file: ", error);
     }
+  }
+  
+  async function getEmail(){
+    const user = await Auth.currentAuthenticatedUser();
+    return user.attributes.email
   }
   return (
     <View className="App">
@@ -51,9 +60,9 @@ function App({ signOut }) {
           <option value="danish">Danish</option>
           <option value="dutch">Dutch</option>
         </select>
-      <button onClick={()=>{
+      <Button onClick={()=>{
                     uploadFile(selectedFile)
-                  }}>Translate!</button>
+                  }}>Translate!</Button>
       <br></br>
       <Button onClick={signOut}>Sign Out</Button>
     </View>
