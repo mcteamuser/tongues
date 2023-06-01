@@ -17,6 +17,7 @@ const s3 = new AWS.S3();
 
 function App({ signOut }) {
   const [selectedFile, setSelectedFile] = useState(null)
+  const [value, setValue] = useState("Zeina");
   const { user } = useAuthenticator();
   const handleFileInput = (e) => {
     setSelectedFile(e.target.files[0]);
@@ -27,7 +28,7 @@ function App({ signOut }) {
     try {
       await Storage.put(file.name, file, {
         level: "private",
-        metadata: {email: String(userEmail), language: "Spanish"}, //To prevent pulling an old outdated file
+        metadata: {email: String(userEmail), language: value}, //To prevent pulling an old outdated file
         contentType: "audio/mp3", // contentType is optional
       });
       console.log("Success!")
@@ -37,6 +38,10 @@ function App({ signOut }) {
     }
   }
   
+const handleChange=(e)=>{
+  setValue(e.target.value);
+}
+
   async function getEmail(){
     const user = await Auth.currentAuthenticatedUser();
     return user.attributes.email
@@ -54,11 +59,11 @@ function App({ signOut }) {
       <input id="file-upload" type="file" onChange={handleFileInput}/>
       <br></br>
       <label for="language">Choose an output language:</label>
-        <select name="language" id="language">
-          <option value="arabic">Arabic</option>
-          <option value="mandarin">Chinese, Mandarin</option>
-          <option value="danish">Danish</option>
-          <option value="dutch">Dutch</option>
+        <select name="language" id="language" value={value} onChange={handleChange}>
+          <option value="Zeina">Arabic</option>
+          <option value="Zhiyu">Chinese, Mandarin</option>
+          <option value="Naja">Danish</option>
+          <option value="Lotte">Dutch</option>
         </select>
       <Button onClick={()=>{
                     uploadFile(selectedFile)
