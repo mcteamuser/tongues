@@ -64,6 +64,7 @@ const handleChange=(e)=>{
           <option value="Zhiyu">Chinese, Mandarin</option>
           <option value="Naja">Danish</option>
           <option value="Lotte">Dutch</option>
+          <option value="Mia">Spanish - Mexico</option>
         </select>
       <Button onClick={()=>{
                     uploadFile(selectedFile)
