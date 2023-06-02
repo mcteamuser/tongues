@@ -17,6 +17,7 @@ const s3 = new AWS.S3();
 
 function App({ signOut }) {
   const [selectedFile, setSelectedFile] = useState(null)
+  const [showFiles, setShowFiles] = useState(false)
   const [value, setValue] = useState("Zeina");
   const { user } = useAuthenticator();
   const handleFileInput = (e) => {
@@ -38,10 +39,22 @@ function App({ signOut }) {
     }
   }
   
-const handleChange=(e)=>{
-  setValue(e.target.value);
-}
-
+  const handleChange=(e)=>{
+    setValue(e.target.value);
+  }
+  function GetFiles(){
+    if(showFiles){
+      return(
+        <>
+          Hi I'm right here
+        <div style={{width: "100px", height: "100px", backgroundColor:"black"}}></div>
+        </>
+      )
+      }
+    else {
+      return null
+    }
+  }
   async function getEmail(){
     const user = await Auth.currentAuthenticatedUser();
     return user.attributes.email
@@ -69,6 +82,9 @@ const handleChange=(e)=>{
       <Button onClick={()=>{
                     uploadFile(selectedFile)
                   }}>Translate!</Button>
+      <br></br>
+      <Button onClick={function(){setShowFiles(!showFiles)}}>Show/Hide Transcribed Files</Button>
+      <GetFiles></GetFiles>
       <br></br>
       <Button onClick={signOut}>Sign Out</Button>
     </View>
