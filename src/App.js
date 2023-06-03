@@ -117,7 +117,7 @@ function App({ signOut }) {
           setShowFiles(!showFiles)
           GetFiles()
         }
-        }>Show/Hide Transcribed Files</Button>
+        }>Refresh Transcripted Files</Button>
         <br></br>
       <ShowFiles></ShowFiles>
       <br></br>
