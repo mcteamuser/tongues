@@ -18,6 +18,7 @@ const s3 = new AWS.S3();
 
 function App({ signOut }) {
   const [selectedFile, setSelectedFile] = useState(null)
+  const [userFileList, setUserFileList] = useState(null);
   const [showFiles, setShowFiles] = useState(false)
   const [value, setValue] = useState("Zeina");
   const { user } = useAuthenticator();
@@ -58,17 +59,29 @@ function App({ signOut }) {
         }
       };
       let res = await axios.post("https://1thvdqr783.execute-api.us-east-1.amazonaws.com/default/tonguesFileCheck", payload); 
-      console.log(res.data)
-      /*
-      return(
-        <>
-          Hi I'm right here
-        <div style={{width: "100px", height: "100px", backgroundColor:"black"}}></div>
-        </>
-      )*/
+      var fileList = JSON.parse(res.data.body)
+      setUserFileList(fileList)
       }
     else {
       return null
+    }
+  }
+  function ShowFiles(){
+    if(userFileList == null){
+      //do nothing
+    }
+    else{
+      var filesToDisplay = Object.values(userFileList)
+
+    return(
+      <>
+      <ul>
+        <li><a href={filesToDisplay[0][1]}>{filesToDisplay[0][0]}</a></li>
+        <li><a href={filesToDisplay[1][1]}>{filesToDisplay[1][0]}</a></li>
+        <li><a href={filesToDisplay[2][1]}>{filesToDisplay[2][0]}</a></li>
+      </ul>
+      </>
+    )
     }
   }
   async function getEmail(){
@@ -105,7 +118,8 @@ function App({ signOut }) {
           GetFiles()
         }
         }>Show/Hide Transcribed Files</Button>
-      
+        <br></br>
+      <ShowFiles></ShowFiles>
       <br></br>
       <Button onClick={signOut}>Sign Out</Button>
     </View>
