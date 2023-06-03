@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "@aws-amplify/ui-react/styles.css";
+import axios from 'axios';
 import { useState, useEffect} from 'react';
 import {
   withAuthenticator,
@@ -42,14 +43,29 @@ function App({ signOut }) {
   const handleChange=(e)=>{
     setValue(e.target.value);
   }
-  function GetFiles(){
+  async function GetFiles(){
     if(showFiles){
+      const user = await Auth.currentAuthenticatedUser();
+      const token = user.signInUserSession.idToken.jwtToken
+      var userEmail = await getEmail()
+      const payload = {
+        
+          email: userEmail
+        
+        ,
+        headers: {
+          Authorization: token
+        }
+      };
+      let res = await axios.post("https://1thvdqr783.execute-api.us-east-1.amazonaws.com/default/tonguesFileCheck", payload); 
+      console.log(res.data)
+      /*
       return(
         <>
           Hi I'm right here
         <div style={{width: "100px", height: "100px", backgroundColor:"black"}}></div>
         </>
-      )
+      )*/
       }
     else {
       return null
@@ -83,8 +99,13 @@ function App({ signOut }) {
                     uploadFile(selectedFile)
                   }}>Translate!</Button>
       <br></br>
-      <Button onClick={function(){setShowFiles(!showFiles)}}>Show/Hide Transcribed Files</Button>
-      <GetFiles></GetFiles>
+      <Button onClick={
+        function(){
+          setShowFiles(!showFiles)
+          GetFiles()
+        }
+        }>Show/Hide Transcribed Files</Button>
+      
       <br></br>
       <Button onClick={signOut}>Sign Out</Button>
     </View>
