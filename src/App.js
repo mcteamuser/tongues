@@ -42,6 +42,7 @@ function App({ signOut }) {
       console.log("Success!")
       }
      catch (error) {
+      setUploadStatus("Error Uploading file :(")
       console.log("Error uploading file: ", error);
     }
   }
