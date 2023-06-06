@@ -19,6 +19,7 @@ const s3 = new AWS.S3();
 function App({ signOut }) {
   const [selectedFile, setSelectedFile] = useState(null)
   const [userFileList, setUserFileList] = useState(null);
+  const [uploadStatus, setUploadStatus] = useState("Pending User - Hit Translate When Ready")
   const [showFiles, setShowFiles] = useState(false)
   const [value, setValue] = useState("Zeina");
   const { user } = useAuthenticator();
@@ -28,12 +29,16 @@ function App({ signOut }) {
   const uploadFile = async (file) => {
     // Do send-ahead API Call to Store Email, Filename, and Language
     var userEmail = await getEmail()
+    //Set the loading animation
+    setUploadStatus("Uploading... Please Wait...")
     try {
       await Storage.put(file.name, file, {
         level: "private",
         metadata: {email: String(userEmail), language: value}, //To prevent pulling an old outdated file
         contentType: "audio/mp3", // contentType is optional
       });
+      //Remove the loading animation
+      setUploadStatus("Upload Complete! Sending To Translator, check back later.")
       console.log("Success!")
       }
      catch (error) {
@@ -99,6 +104,7 @@ function App({ signOut }) {
       </label>
       <br></br>
       <input id="file-upload" type="file" onChange={handleFileInput}/>
+      <>Upload Status: {uploadStatus}</>
       <br></br>
       <label for="language">Choose an output language:</label>
         <select name="language" id="language" value={value} onChange={handleChange}>
