@@ -115,6 +115,7 @@ function App({ signOut }) {
           <option value="Lotte">Dutch</option>
           <option value="Mia">Spanish - Mexico</option>
           <option value="Kendra">English</option>
+          <option value="Seoyeon">Korean</option>
         </select>
       <Button onClick={()=>{
                     uploadFile(selectedFile)
