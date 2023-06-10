@@ -85,6 +85,7 @@ function App({ signOut }) {
         <li><a href={filesToDisplay[0][1]}>{filesToDisplay[0][0]}</a></li>
         <li><a href={filesToDisplay[1][1]}>{filesToDisplay[1][0]}</a></li>
         <li><a href={filesToDisplay[2][1]}>{filesToDisplay[2][0]}</a></li>
+        <li><a href={filesToDisplay[3][1]}>{filesToDisplay[3][0]}</a></li>
       </ul>
       </>
     )
