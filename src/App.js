@@ -87,6 +87,27 @@ function App({ signOut }) {
         <li><a href={filesToDisplay[2][1]}>{filesToDisplay[2][0]}</a></li>
         <li><a href={filesToDisplay[3][1]}>{filesToDisplay[3][0]}</a></li>
       </ul>
+      <meta charSet="utf-8"/>
+      <div style={
+        {
+          width:"250px",
+          border:"1px solid black",
+          overflow: "auto",
+          float: "left",
+          marginRight: "100px"
+        }
+      }>
+        {filesToDisplay[4][0]}
+      </div>
+      <div style={
+        {
+          width:"250px",
+          border:"1px solid black",
+          overflow: "auto"
+        }
+      }>
+        {filesToDisplay[5][0]}
+      </div>
       </>
     )
     }
