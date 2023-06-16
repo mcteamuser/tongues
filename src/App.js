@@ -13,7 +13,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { Storage, Auth} from 'aws-amplify';
 import AWS from 'aws-sdk'; //Needed to import this to work properly
-
+import './style.css'
 const s3 = new AWS.S3();
 
 function App({ signOut }) {
@@ -139,10 +139,12 @@ function App({ signOut }) {
           <option value="Kendra">English</option>
           <option value="Seoyeon">Korean</option>
         </select>
-      <Button onClick={()=>{
+      <button className="button-85"
+       onClick={()=>{
                     uploadFile(selectedFile)
-                  }}>Translate!</Button>
+                  }}>Translate!</button>
       <br></br>
+    
       <Button onClick={
         function(){
           setShowFiles(!showFiles)
