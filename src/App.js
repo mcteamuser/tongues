@@ -13,6 +13,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { Storage, Auth} from 'aws-amplify';
 import AWS from 'aws-sdk'; //Needed to import this to work properly
+import './style.css'
 
 const s3 = new AWS.S3();
 
@@ -153,6 +154,80 @@ function App({ signOut }) {
       <ShowFiles></ShowFiles>
       <br></br>
       <Button onClick={signOut}>Sign Out</Button>
+      
+      <div class='button'>
+  <h1>Fizzy CSS Button</h1>
+  <h2>With super fizzy particle action</h2>
+  <a href='https://www.codepen.io/jcoulterdesign'>
+    <i class='ion-social-codepen'></i>
+    <span>More Codepen shenanigans</span>
+  </a>
+  <input id='button' type='checkbox'></input>
+  <label for='button'>
+    <div class='button_inner q'>
+      <i class='l ion-log-in'></i>
+      <span class='t'>Downloads</span>
+      <span>
+        <i class='tick ion-checkmark-round'></i>
+      </span>
+      <div class='b_l_quad'>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+      </div>
+    </div>
+  </label>
+</div>
+
     </View>
   );
 }
