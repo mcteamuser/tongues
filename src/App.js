@@ -117,56 +117,17 @@ function App({ signOut }) {
     const user = await Auth.currentAuthenticatedUser();
     return user.attributes.email
   }
-  return (
-    <View className="App">
-      <Card>
-        <Image src={logo} className="App-logo" alt="logo" />
-        <Heading level={1}>Convert Your Audio Files Into Different Languages!</Heading>
-      </Card>
-      <label for="file-upload" class="custom-file-upload">
-        Upload Audio File Here
-      </label>
-      <br></br>
-      <input id="file-upload" type="file" onChange={handleFileInput}/>
-      <>Upload Status: {uploadStatus}</>
-      <br></br>
-      <label for="language">Choose an output language:</label>
-        <select name="language" id="language" value={value} onChange={handleChange}>
-          <option value="Zeina">Arabic</option>
-          <option value="Zhiyu">Chinese, Mandarin</option>
-          <option value="Naja">Danish</option>
-          <option value="Lotte">Dutch</option>
-          <option value="Mia">Spanish - Mexico</option>
-          <option value="Kendra">English</option>
-          <option value="Seoyeon">Korean</option>
-        </select>
-      <Button onClick={()=>{
-                    uploadFile(selectedFile)
-                  }}>Translate!</Button>
-      <br></br>
-      <Button onClick={
-        function(){
-          setShowFiles(!showFiles)
-          GetFiles()
-        }
-        }>Refresh Transcripted Files</Button>
-        <br></br>
-      <ShowFiles></ShowFiles>
-      <br></br>
-      <Button onClick={signOut}>Sign Out</Button>
-      
+  function TranslateButton(){
+    return(
       <div class='button'>
-  <h1>Fizzy CSS Button</h1>
-  <h2>With super fizzy particle action</h2>
-  <a href='https://www.codepen.io/jcoulterdesign'>
-    <i class='ion-social-codepen'></i>
-    <span>More Codepen shenanigans</span>
-  </a>
-  <input id='button' type='checkbox'></input>
+  <input id='button' type='checkbox'
+    onClick={()=>{
+      uploadFile(selectedFile)
+    }}></input>
   <label for='button'>
     <div class='button_inner q'>
       <i class='l ion-log-in'></i>
-      <span class='t'>Downloads</span>
+      <span class='t'>Translate</span>
       <span>
         <i class='tick ion-checkmark-round'></i>
       </span>
@@ -228,8 +189,57 @@ function App({ signOut }) {
   </label>
 </div>
 
+    )
+  }
+  return (
+    //<Image src={logo} className="App-logo" alt="logo" />
+    <View className="App">
+      <Card>
+        <Heading level={1}>Convert Your Audio Files Into Different Languages!</Heading>
+      </Card>
+      <label for="file-upload" class="custom-file-upload">
+        Upload Audio File Here
+      </label>
+      <br></br>
+      <input 
+        id="file-upload" 
+        type="file" 
+        onChange={handleFileInput}
+        style={{display:"block"}}
+      />
+      <>Upload Status: {uploadStatus}</>
+      <br></br>
+      <label for="language">Choose an output language:</label>
+        <select name="language" id="language" value={value} onChange={handleChange}>
+          <option value="Zeina">Arabic</option>
+          <option value="Zhiyu">Chinese, Mandarin</option>
+          <option value="Naja">Danish</option>
+          <option value="Lotte">Dutch</option>
+          <option value="Mia">Spanish - Mexico</option>
+          <option value="Kendra">English</option>
+          <option value="Seoyeon">Korean</option>
+        </select>
+      <br></br>
+      <TranslateButton></TranslateButton>
+      <br></br>
+      <Button onChange={
+        function(){
+          setShowFiles(!showFiles)
+          GetFiles()
+        }
+        }>Refresh Transcripted Files</Button>
+      <br></br>
+      <ShowFiles></ShowFiles>
+      <br></br>
+      <Button onClick={signOut}>Sign Out</Button>
     </View>
   );
 }
 
 export default withAuthenticator(App);
+/*
+<>Upload Status: {uploadStatus}</>
+<Button onClick={()=>{
+                    uploadFile(selectedFile)
+                  }}>Translate!</Button>
+*/

@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Fira+Sans:400,300,700,500,400italic,500italic,700italic,300italic);
+/*
 body {
   background: #2C3940;
   overflow: hidden;
@@ -21,10 +22,13 @@ body a:hover {
 body a i.l {
   margin-right: 3px;
 }
+*/
 
+/* This hides the secret checkbox from displaying */
 input {
   display: none;
 }
+
 
 input:checked + label .button_inner {
   background: transparent;
@@ -558,16 +562,20 @@ input:checked + label .button_spots:nth-of-type(60) {
   margin: auto;
   font-size: 22px;
 }
-
+/* This is the display of the button before the hover */
 .button {
+  /*
   position: absolute;
   top: 50%;
   left: 0;
   right: 0;
   margin: auto;
+  */
   text-align: Center;
+  /*
   height: 360px;
   width: 200px;
+  */
   transform: translateY(-50%);
 }
 .button h1 {
@@ -1179,21 +1187,27 @@ input:checked + label .button_spots:nth-of-type(60) {
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.12);
   transition: all 1.9s;
 }
+/* This is the portion of the button that displays during the hover */
 .button_inner {
   border-radius: 2px;
+  /*
   position: absolute;
+  */
   width: 200px;
   height: 50px;
+  /*
   left: 0;
   right: 0;
   top: 50%;
   margin: auto;
+  */
+  margin-top: 50px; /* Not here prior */
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.04);
   font-weight: 100;
   font-size: 12px;
   cursor: pointer;
-  border: 2px solid #FFFFFF;
-  color: white;
+  border: 2px solid black;
+  color: rgba(0, 0, 0); /* Formerly White - This is the text color */
   text-align: Center;
   transition: all 0.3s, box-shadow 0.2s, transform 0.2s 0.2s;
 }
@@ -1215,7 +1229,7 @@ input:checked + label .button_spots:nth-of-type(60) {
 }
 .button_inner:hover {
   color: #2C3940;
-  background: white;
+  background: white; /* Previously White */
   box-shadow: 0px 17px 18px -14px rgba(0, 0, 0, 0.08);
 }
 .button_inner:hover span.t {
