@@ -222,8 +222,9 @@ function App({ signOut }) {
       <br></br>
       <TranslateButton></TranslateButton>
       <br></br>
-      <Button onChange={
+      <Button onClick={
         function(){
+          console.log("Clicked!")
           setShowFiles(!showFiles)
           GetFiles()
         }
