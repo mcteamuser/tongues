@@ -22,6 +22,7 @@ function App({ signOut }) {
   const [userFileList, setUserFileList] = useState(null);
   const [uploadStatus, setUploadStatus] = useState("Pending User - Hit Translate When Ready")
   const [showFiles, setShowFiles] = useState(false)
+  const [checkedProp, setCheckedProp] = useState(false)
   const [value, setValue] = useState("Zeina");
   const { user } = useAuthenticator();
   const handleFileInput = (e) => {
@@ -121,8 +122,10 @@ function App({ signOut }) {
     return(
       <div class='button'>
   <input id='button' type='checkbox'
+    checked={checkedProp}
     onClick={()=>{
       uploadFile(selectedFile)
+      setCheckedProp(true)
     }}></input>
   <label for='button'>
     <div class='button_inner q'>
