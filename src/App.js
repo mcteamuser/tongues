@@ -125,7 +125,7 @@ function App({ signOut }) {
     checked={checkedProp}
     onClick={()=>{
       uploadFile(selectedFile)
-      setCheckedProp(true)
+      setCheckedProp(!checkedProp)
     }}></input>
   <label for='button'>
     <div class='button_inner q'>
@@ -197,6 +197,7 @@ function App({ signOut }) {
   return (
     //<Image src={logo} className="App-logo" alt="logo" />
     <View className="App">
+      <Image src="https://sphoenix-domain-media.s3.amazonaws.com/logo/SOUND_LOGO.jpg" className="App-logo" alt="logo" />
       <Card>
         <Heading level={1}>Convert Your Audio Files Into Different Languages!</Heading>
       </Card>
@@ -228,6 +229,7 @@ function App({ signOut }) {
       <Button onClick={
         function(){
           console.log("Clicked!")
+          setCheckedProp(false)
           setShowFiles(!showFiles)
           GetFiles()
         }
