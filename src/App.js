@@ -13,6 +13,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { Storage, Auth} from 'aws-amplify';
 import AWS from 'aws-sdk'; //Needed to import this to work properly
+import './style.css'
 
 const s3 = new AWS.S3();
 
@@ -21,6 +22,7 @@ function App({ signOut }) {
   const [userFileList, setUserFileList] = useState(null);
   const [uploadStatus, setUploadStatus] = useState("Pending User - Hit Translate When Ready")
   const [showFiles, setShowFiles] = useState(false)
+  const [checkedProp, setCheckedProp] = useState(false)
   const [value, setValue] = useState("Zeina");
   const { user } = useAuthenticator();
   const handleFileInput = (e) => {
@@ -116,17 +118,99 @@ function App({ signOut }) {
     const user = await Auth.currentAuthenticatedUser();
     return user.attributes.email
   }
+  function TranslateButton(){
+    return(
+      <div class='button'>
+  <input id='button' type='checkbox'
+    checked={checkedProp}
+    onClick={()=>{
+      uploadFile(selectedFile)
+      setCheckedProp(!checkedProp)
+    }}></input>
+  <label for='button'>
+    <div class='button_inner q'>
+      <i class='l ion-log-in'></i>
+      <span class='t'>Translate</span>
+      <span>
+        <i class='tick ion-checkmark-round'></i>
+      </span>
+      <div class='b_l_quad'>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+        <div class='button_spots'></div>
+      </div>
+    </div>
+  </label>
+</div>
+
+    )
+  }
   return (
+    //<Image src={logo} className="App-logo" alt="logo" />
     <View className="App">
+      <Image src="https://sphoenix-domain-media.s3.amazonaws.com/logo/SOUND_LOGO.jpg" className="App-logo" alt="logo" />
       <Card>
-        <Image src={logo} className="App-logo" alt="logo" />
         <Heading level={1}>Convert Your Audio Files Into Different Languages!</Heading>
       </Card>
       <label for="file-upload" class="custom-file-upload">
         Upload Audio File Here
       </label>
       <br></br>
-      <input id="file-upload" type="file" onChange={handleFileInput}/>
+      <input 
+        id="file-upload" 
+        type="file" 
+        onChange={handleFileInput}
+        style={{display:"block"}}
+      />
       <>Upload Status: {uploadStatus}</>
       <br></br>
       <label for="language">Choose an output language:</label>
@@ -139,17 +223,18 @@ function App({ signOut }) {
           <option value="Kendra">English</option>
           <option value="Seoyeon">Korean</option>
         </select>
-      <Button onClick={()=>{
-                    uploadFile(selectedFile)
-                  }}>Translate!</Button>
+      <br></br>
+      <TranslateButton></TranslateButton>
       <br></br>
       <Button onClick={
         function(){
+          console.log("Clicked!")
+          setCheckedProp(false)
           setShowFiles(!showFiles)
           GetFiles()
         }
         }>Refresh Transcripted Files</Button>
-        <br></br>
+      <br></br>
       <ShowFiles></ShowFiles>
       <br></br>
       <Button onClick={signOut}>Sign Out</Button>
@@ -158,3 +243,9 @@ function App({ signOut }) {
 }
 
 export default withAuthenticator(App);
+/*
+<>Upload Status: {uploadStatus}</>
+<Button onClick={()=>{
+                    uploadFile(selectedFile)
+                  }}>Translate!</Button>
+*/
